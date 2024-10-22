@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://vwsvlsefftjd"]
+
+[ext_resource type="Script" path="res://scripts/box.gd" id="1_rmsvc"]
+[ext_resource type="Texture2D" uid="uid://ekhiyftkx2b2" path="res://assets/Assets/caixa.png" id="2_asxvb"]
+
+[sub_resource type="GDScript" id="GDScript_gt7ux"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2fri"]
+size = Vector2(28, 28)
+
+[node name="Box" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_rmsvc")
+
+[node name="Caixa" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(0.103, 0.1)
+texture = ExtResource("2_asxvb")
+script = SubResource("GDScript_gt7ux")
+
+[node name="BoxCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_y2fri")

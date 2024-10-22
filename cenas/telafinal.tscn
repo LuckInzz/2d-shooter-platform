@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct0sk4hhilk8n"]
+
+[ext_resource type="Script" path="res://scripts/telafinal.gd" id="1_i33hq"]
+[ext_resource type="Texture2D" uid="uid://dl78srujjvj50" path="res://assets/Assets/360_F_244026851_p5gHQILPzd6V9byoe6tdCGxrs12F1Bwg.jpg" id="2_lf4mv"]
+[ext_resource type="FontFile" uid="uid://bctqnnldliief" path="res://assets/simpletix.otf" id="3_cdqwb"]
+
+[node name="telafinal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i33hq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.078125
+anchor_top = -0.0625
+anchor_right = 0.921875
+anchor_bottom = 1.0625
+offset_left = 180.0
+offset_top = 21.0
+offset_right = -177.0
+offset_bottom = -219.0
+grow_horizontal = 2
+texture = ExtResource("2_lf4mv")
+expand_mode = 1
+
+[node name="Restart" type="Button" parent="."]
+texture_filter = 2
+layout_mode = 0
+offset_left = 285.0
+offset_top = 146.0
+offset_right = 360.0
+offset_bottom = 177.0
+theme_override_fonts/font = ExtResource("3_cdqwb")
+text = "RESTART"
+
+[node name="Quit" type="Button" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = 21.0
+offset_right = 24.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_cdqwb")
+text = "QUIT"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

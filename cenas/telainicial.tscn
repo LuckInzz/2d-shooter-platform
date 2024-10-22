@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk0w508exyo6x"]
+
+[ext_resource type="Script" path="res://scripts/telainicial.gd" id="1_hh31s"]
+[ext_resource type="Texture2D" uid="uid://dh4n8sny6nckq" path="res://assets/logo background.png" id="2_abjjn"]
+[ext_resource type="Texture2D" uid="uid://blaw6en0obee1" path="res://assets/Main Character/Standing (32 x 48).png" id="2_r61nf"]
+[ext_resource type="FontFile" uid="uid://bctqnnldliief" path="res://assets/simpletix.otf" id="3_i5esr"]
+[ext_resource type="AudioStream" uid="uid://c3u7x2vuml5jj" path="res://sons/musica do menu.mp3" id="5_abvsv"]
+
+[node name="telainicial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hh31s")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+texture_filter = 2
+layout_mode = 2
+texture = ExtResource("2_abjjn")
+expand_mode = 5
+
+[node name="HBoxContainer" type="Node" parent="MarginContainer"]
+
+[node name="VBoxContainer" type="Node" parent="MarginContainer/HBoxContainer"]
+
+[node name="Start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+offset_left = 278.0
+offset_top = 167.0
+offset_right = 350.0
+offset_bottom = 198.0
+theme_override_fonts/font = ExtResource("3_i5esr")
+text = "START"
+
+[node name="Settings" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+offset_left = 259.0
+offset_top = 204.0
+offset_right = 366.0
+offset_bottom = 235.0
+theme_override_fonts/font = ExtResource("3_i5esr")
+text = "SETTINGS
+"
+
+[node name="Credits" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+offset_left = 277.0
+offset_top = 239.0
+offset_right = 349.0
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("3_i5esr")
+text = "CREDITS"
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+offset_left = 278.0
+offset_top = 278.0
+offset_right = 350.0
+offset_bottom = 309.0
+theme_override_fonts/font = ExtResource("3_i5esr")
+text = "QUIT"
+
+[node name="Personagem" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+visible = false
+texture = ExtResource("2_r61nf")
+expand_mode = 2
+flip_h = true
+
+[node name="initial_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_abvsv")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Settings" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkpomeji0h2pq"
+path="res://.godot/imported/Som de Tiro - Efeito Sonoro [ ezmp3.cc ].mp3-7a5a237e7ba350d29e4dbbd91794156b.mp3str"
+
+[deps]
+
+source_file="res://sons/Som de Tiro - Efeito Sonoro [ ezmp3.cc ].mp3"
+dest_files=["res://.godot/imported/Som de Tiro - Efeito Sonoro [ ezmp3.cc ].mp3-7a5a237e7ba350d29e4dbbd91794156b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
