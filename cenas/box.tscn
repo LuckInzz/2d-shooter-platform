@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2fri"]
-size = Vector2(28, 28)
+size = Vector2(34, 33)
 
 [node name="Box" type="CharacterBody2D"]
 collision_layer = 2
@@ -26,11 +26,11 @@ collision_mask = 15
 script = ExtResource("1_rmsvc")
 
 [node name="Caixa" type="Sprite2D" parent="."]
-position = Vector2(0, -14)
-scale = Vector2(0.103, 0.1)
+position = Vector2(3.07325, -16.75)
+scale = Vector2(0.125849, 0.12037)
 texture = ExtResource("2_asxvb")
 script = SubResource("GDScript_gt7ux")
 
 [node name="BoxCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -14)
+position = Vector2(3, -16.5)
 shape = SubResource("RectangleShape2D_y2fri")

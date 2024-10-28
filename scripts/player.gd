@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
 const BULLET = preload("res://cenas/bullet.tscn")
+const PASSWORD_PAPER = preload("res://cenas/papel_senha.tscn")
 
 @export var life = 5
 @export var SPEED = 150.0
 @export var num_bullets = 20
 var initial_bullets = 20
 var total_bullets = 40
-var JUMP_FORCE = -300.0
+@export var JUMP_FORCE = -300.0
 var is_jumping = false
 var is_shooting = false
 var is_crouched = false
@@ -16,14 +17,24 @@ var is_dead = false
 var is_hurt = false
 var is_reloading = false
 var knockback_vector := Vector2.ZERO
+var has_password_paper = false
+var instancia_pp
 
 @onready var animation: AnimatedSprite2D = $Sprite
 @onready var bullet_position: Marker2D = $bullet_position
 @onready var shoot_cooldown: Timer = $shoot_cooldown
-@onready var gun_shoot_sound: AudioStreamPlayer = $gun_shoot_sound
 @onready var animation_timer: Timer = $animation_timer
+@onready var single_shoot: AudioStreamPlayer = $single_shoot
+@onready var carregando_pente: AudioStreamPlayer = $carregando_pente
+@onready var tirando_pente: AudioStreamPlayer = $tirando_pente
+@onready var automatic_shot: AudioStreamPlayer = $automatic_shot
+
 
 var original_bullet_y = -24
+
+func _ready() -> void:
+	instancia_pp = PASSWORD_PAPER.instantiate()
+	add_child(instancia_pp)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -31,26 +42,29 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 
 	var direction = 0
-	if(Input.is_key_pressed(KEY_A)):
+	if Input.is_key_pressed(KEY_A) and !is_reloading:
 		direction = -1
 		if sign(bullet_position.position.x) == 1:
 			bullet_position.position.x *= -1
-	elif (Input.is_key_pressed(KEY_D)):
+	elif Input.is_key_pressed(KEY_D) and !is_reloading:
 		direction = 1 
 		if sign(bullet_position.position.x) == -1:
 			bullet_position.position.x *= -1
 			
-	if Input.is_key_pressed(KEY_P):
+	if Input.is_key_pressed(KEY_I):
 		is_pushing = true
 	else:
 		is_pushing = false
 	
 	if Input.is_key_pressed(KEY_R) and num_bullets < initial_bullets:
+		tirando_pente.play()
+		carregando_pente.play()
 		is_reloading = true
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and num_bullets > 0 or Input.is_key_pressed(KEY_ENTER) and num_bullets > 0:
-		is_shooting = true
 		if shoot_cooldown.is_stopped():
+			is_shooting = true
+			single_shoot.play()
 			shoot_bullet()
 	else:
 		is_shooting = false
@@ -61,7 +75,7 @@ func _physics_process(delta):
 		is_crouched = false
 	
 	#Handle Jump
-	if Input.is_key_pressed(KEY_W) and is_on_floor() and is_on_floor() || Input.is_key_pressed(KEY_SPACE) and is_on_floor() and is_on_floor():
+	if Input.is_key_pressed(KEY_W) and is_on_floor() and is_on_floor() and !is_reloading || Input.is_key_pressed(KEY_SPACE) and is_on_floor() and is_on_floor() and !is_reloading:
 		velocity.y = JUMP_FORCE
 		is_jumping = true
 	elif is_on_floor():
@@ -75,7 +89,11 @@ func _physics_process(delta):
 		
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
-		
+	
+	if Input.is_key_pressed(KEY_P) and has_password_paper:
+		instancia_pp.show_in_screen()
+	
+	sounds()
 	move_and_slide()
 	apply_push_box()
 	animations()
@@ -85,7 +103,7 @@ func apply_push_box():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider is Pushables:
-			if  Input.is_key_pressed(KEY_P):
+			if  Input.is_key_pressed(KEY_I):
 				is_pushing = true
 				if velocity.x == 0:
 					collider.push_box(-collision.get_normal())
@@ -106,7 +124,6 @@ func shoot_bullet():
 		add_sibling(bullet_instance)
 		bullet_instance.global_position = bullet_position.global_position
 		shoot_cooldown.start()
-		gun_shoot_sound.play()
 		if is_shooting && is_crouched:
 			bullet_position.position.y = original_bullet_y + 9
 		else:
@@ -185,7 +202,7 @@ func animations():
 				state = "Pushing_Stand"
 		elif is_reloading and !is_pushing and velocity.x == 0 and num_bullets != initial_bullets:
 			state = "Reloading"
-		else:
+		elif !is_reloading:
 			state = "Idle"
 	if animation.name != state:
 		animation.play(state)
@@ -197,3 +214,11 @@ func animations():
 			await get_tree().create_timer(.2).timeout
 			animation.stop()
 			is_hurt = false	
+
+func sounds():
+	#if is_reloading:
+		#tirando_pente.play()
+		#carregando_pente.play()
+	#if is_shooting:
+		#single_shoot.play()
+	pass

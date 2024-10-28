@@ -277,6 +277,7 @@ position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_v4tty")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(3, -13)
 sprite_frames = SubResource("SpriteFrames_e3llt")
 animation = &"Hurt"

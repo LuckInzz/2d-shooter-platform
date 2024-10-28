@@ -29,10 +29,10 @@ anchor_left = 0.078125
 anchor_top = -0.0625
 anchor_right = 0.921875
 anchor_bottom = 1.0625
-offset_left = 180.0
-offset_top = 21.0
-offset_right = -177.0
-offset_bottom = -219.0
+offset_left = 426.0
+offset_top = 78.5
+offset_right = -430.0
+offset_bottom = -649.5
 grow_horizontal = 2
 texture = ExtResource("2_lf4mv")
 expand_mode = 1
@@ -40,11 +40,12 @@ expand_mode = 1
 [node name="Restart" type="Button" parent="."]
 texture_filter = 2
 layout_mode = 0
-offset_left = 285.0
-offset_top = 146.0
-offset_right = 360.0
-offset_bottom = 177.0
+offset_left = 842.0
+offset_top = 528.0
+offset_right = 1065.0
+offset_bottom = 611.0
 theme_override_fonts/font = ExtResource("3_cdqwb")
+theme_override_font_sizes/font_size = 35
 text = "RESTART"
 
 [node name="Quit" type="Button" parent="."]
@@ -55,13 +56,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = 21.0
-offset_right = 24.0
-offset_bottom = 52.0
+offset_left = -117.0
+offset_top = 96.0
+offset_right = 102.0
+offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_cdqwb")
+theme_override_font_sizes/font_size = 35
 text = "QUIT"
 
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

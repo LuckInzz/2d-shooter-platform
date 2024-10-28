@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bp8naui85g4od"
+path="res://.godot/imported/carregando pente.mp3-cbf1c68574d929727d40717d163131e7.mp3str"
+
+[deps]
+
+source_file="res://sons/carregando pente.mp3"
+dest_files=["res://.godot/imported/carregando pente.mp3-cbf1c68574d929727d40717d163131e7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://d0n6bs3kmy6a7"]
+[gd_scene load_steps=59 format=3 uid="uid://d0n6bs3kmy6a7"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eutx1"]
 [ext_resource type="Texture2D" uid="uid://ciagr4cewxiai" path="res://assets/Main Character/Crouch 2.png" id="2_0kj04"]
@@ -13,7 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://c6ks35g86mlno" path="res://assets/Main Character/Shooting_while_jumping (48 x 48).png" id="10_wv7uw"]
 [ext_resource type="Texture2D" uid="uid://ckdk4aiq7a10i" path="res://assets/Main Character/Shooting_while_running (48 x 48).png" id="11_bgr4c"]
 [ext_resource type="Texture2D" uid="uid://ch1fri1ui7txj" path="res://assets/Main Character/Shooting_while_standing (48 x 48).png" id="12_j7jlb"]
-[ext_resource type="AudioStream" uid="uid://cq2n0dujp478l" path="res://sons/Gunshot Sound Effect Single Shot [ ezmp3.cc ].mp3" id="14_2kk1i"]
+[ext_resource type="AudioStream" uid="uid://c8pgwlusnu715" path="res://sons/single shot.mp3" id="14_74qyg"]
+[ext_resource type="AudioStream" uid="uid://bp8naui85g4od" path="res://sons/carregando pente.mp3" id="15_5wsck"]
+[ext_resource type="AudioStream" uid="uid://bo1sps7iyi6y1" path="res://sons/tirando pente.mp3" id="16_ot4ic"]
+[ext_resource type="AudioStream" uid="uid://dgy2h3s8kta2r" path="res://sons/automatic shot.mp3" id="17_yy27k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cshcn"]
 atlas = ExtResource("2_0kj04")
@@ -293,7 +296,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Shoot_Crouching",
-"speed": 9.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -307,7 +310,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Shoot_Jumping",
-"speed": 9.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -330,7 +333,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Shoot_Running",
-"speed": 9.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -344,7 +347,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Shoot_Standing",
-"speed": 9.0
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f730k"]
@@ -357,16 +360,18 @@ size = Vector2(21, 32)
 position = Vector2(23, 221)
 collision_mask = 22
 script = ExtResource("1_eutx1")
+life = 3
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(7, -28)
 sprite_frames = SubResource("SpriteFrames_7xlhi")
-animation = &"Run"
+animation = &"Shoot_Standing"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, -45)
 offset = Vector2(0, -30)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(4, 4)
 limit_left = -100
 limit_smoothed = true
 position_smoothing_speed = 50.0
@@ -380,7 +385,7 @@ shape = SubResource("RectangleShape2D_f730k")
 position = Vector2(18, -24)
 
 [node name="shoot_cooldown" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.5
 one_shot = true
 
 [node name="hurtbox" type="Area2D" parent="."]
@@ -392,12 +397,22 @@ position = Vector2(4.5, -28)
 shape = SubResource("RectangleShape2D_livm4")
 debug_color = Color(0.988193, 0, 0.304733, 0.42)
 
-[node name="gun_shoot_sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_2kk1i")
-volume_db = -42.214
-autoplay = true
-
 [node name="animation_timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="single_shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_74qyg")
+volume_db = -10.0
+
+[node name="carregando_pente" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_5wsck")
+volume_db = -30.0
+
+[node name="tirando_pente" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_ot4ic")
+volume_db = -30.0
+
+[node name="automatic_shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_yy27k")
 
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

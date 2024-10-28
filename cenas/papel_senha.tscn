@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgaimvn2l32ms"]
+
+[ext_resource type="Texture2D" uid="uid://cc4ybl0x77iy5" path="res://assets/Assets/papel_senha.png" id="1_2xnvn"]
+[ext_resource type="Script" path="res://scripts/papel_senha.gd" id="1_76phf"]
+[ext_resource type="FontFile" uid="uid://bctqnnldliief" path="res://assets/simpletix.otf" id="2_ol4by"]
+
+[node name="password_paper" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_76phf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.254902)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_2xnvn")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="exit_button" type="Button" parent="."]
+offset_left = 1765.0
+offset_top = 46.0
+offset_right = 1854.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ol4by")
+theme_override_font_sizes/font_size = 50
+text = "X"
+
+[connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]

@@ -37,39 +37,43 @@ expand_mode = 5
 
 [node name="Start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 texture_filter = 2
-offset_left = 278.0
-offset_top = 167.0
-offset_right = 350.0
-offset_bottom = 198.0
+offset_left = 733.0
+offset_top = 582.0
+offset_right = 1161.0
+offset_bottom = 662.0
 theme_override_fonts/font = ExtResource("3_i5esr")
+theme_override_font_sizes/font_size = 35
 text = "START"
 
 [node name="Settings" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 texture_filter = 2
-offset_left = 259.0
-offset_top = 204.0
-offset_right = 366.0
-offset_bottom = 235.0
+offset_left = 734.0
+offset_top = 667.0
+offset_right = 1148.0
+offset_bottom = 749.0
 theme_override_fonts/font = ExtResource("3_i5esr")
+theme_override_font_sizes/font_size = 35
 text = "SETTINGS
 "
 
 [node name="Credits" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 texture_filter = 2
-offset_left = 277.0
-offset_top = 239.0
-offset_right = 349.0
-offset_bottom = 270.0
+offset_left = 728.0
+offset_top = 773.0
+offset_right = 1141.0
+offset_bottom = 860.0
 theme_override_fonts/font = ExtResource("3_i5esr")
+theme_override_font_sizes/font_size = 35
 text = "CREDITS"
 
 [node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 texture_filter = 2
-offset_left = 278.0
-offset_top = 278.0
-offset_right = 350.0
-offset_bottom = 309.0
+offset_left = 734.0
+offset_top = 882.0
+offset_right = 1134.0
+offset_bottom = 989.0
 theme_override_fonts/font = ExtResource("3_i5esr")
+theme_override_font_sizes/font_size = 35
 text = "QUIT"
 
 [node name="Personagem" type="TextureRect" parent="MarginContainer/HBoxContainer"]
