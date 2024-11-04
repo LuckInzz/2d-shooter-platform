@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://djxn516e10tga"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hg51a"]
+[ext_resource type="Texture2D" uid="uid://dnm12v5pxkxjn" path="res://assets/Gun.png" id="2_7iott"]
+[ext_resource type="FontFile" uid="uid://bctqnnldliief" path="res://assets/simpletix.otf" id="3_jrela"]
+[ext_resource type="Texture2D" uid="uid://dpyyt8me8ibef" path="res://assets/Bullet (32 x 48).png" id="4_s7u1w"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hg51a")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="gun_icon" type="TextureRect" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_7iott")
+expand_mode = 3
+
+[node name="num_bullets" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 50
+text = "00"
+
+[node name="divisor" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+texture_repeat = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 50
+text = "|"
+
+[node name="total_bullets" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 50
+text = "00"
+
+[node name="bullet" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1816.0
+offset_top = 943.0
+offset_right = 1883.0
+offset_bottom = 997.0
+texture = ExtResource("4_s7u1w")
+
+[node name="num_bullets_plus" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1774.0
+offset_top = 955.0
+offset_right = 1827.0
+offset_bottom = 990.0
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 35
+text = "00"
+
+[node name="plus" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1745.0
+offset_top = 954.0
+offset_right = 1761.0
+offset_bottom = 989.0
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 35
+text = "+"

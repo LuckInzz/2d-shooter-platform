@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://dalbb64lx5vvl"]
+
+[ext_resource type="Script" path="res://scripts/falling_platform.gd" id="1_206et"]
+[ext_resource type="Texture2D" uid="uid://dpruc7pbjt2vi" path="res://assets/Assets/falling_platform.png" id="2_hs0r4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myd1i"]
+size = Vector2(16, 15)
+
+[sub_resource type="Animation" id="Animation_8kowc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_56sx5"]
+resource_name = "shake"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lsjaa"]
+_data = {
+"RESET": SubResource("Animation_8kowc"),
+"shake": SubResource("Animation_56sx5")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_toxt0"]
+size = Vector2(14, 24)
+
+[node name="falling_platform" type="AnimatableBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_206et")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hs0r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_myd1i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lsjaa")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_toxt0")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

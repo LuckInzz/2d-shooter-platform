@@ -164,7 +164,7 @@ func die():
 		get_tree().change_scene_to_file("res://cenas/telafinal.tscn")
 	
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies") and !is_dead:
+	if body.is_in_group("enemies") and !body.is_dead:
 		body.is_attacking = true
 		await get_tree().create_timer(.2).timeout
 		body.is_attacking = false
@@ -213,7 +213,7 @@ func animations():
 		elif state == "Hurt":
 			await get_tree().create_timer(.2).timeout
 			animation.stop()
-			is_hurt = false	
+			is_hurt = false
 
 func sounds():
 	#if is_reloading:

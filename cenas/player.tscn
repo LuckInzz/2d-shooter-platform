@@ -370,9 +370,11 @@ animation = &"Shoot_Standing"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, -45)
-offset = Vector2(0, -30)
+offset = Vector2(0, -20)
 zoom = Vector2(4, 4)
 limit_left = -100
+limit_top = 50
+limit_bottom = 1000
 limit_smoothed = true
 position_smoothing_speed = 50.0
 editor_draw_limits = true
