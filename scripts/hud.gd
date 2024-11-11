@@ -1,26 +1,33 @@
 extends Control
 
+@onready var player: CharacterBody2D = $"../../Player"
 @onready var num_bullets: Label = $MarginContainer/HBoxContainer/num_bullets
 @onready var total_bullets: Label = $MarginContainer/HBoxContainer/total_bullets
-@onready var player: CharacterBody2D = $"../../Player"
 @onready var num_bullets_plus: Label = $num_bullets_plus
 @onready var bullet: TextureRect = $bullet
 @onready var plus: Label = $plus
+@onready var health_bar: ProgressBar = $health_bar
 
 
-const bau = preload("res://cenas/bau.tscn")
+const ENEMY = preload("res://cenas/enemy.tscn")
+const PLAYER = preload("res://cenas/player.tscn")
 var instancia_bau
+var instancia_player
+var instancia_enemy
 var baus = []
 
 func _ready() -> void:
+	instancia_player = PLAYER.instantiate()
 	bullet.visible = false
 	num_bullets_plus.visible = false
 	plus.visible = false
 	baus = get_tree().get_nodes_in_group("baus")
+	health_bar.max_value = instancia_player.life
 	
 func _process(delta: float) -> void:
 	num_bullets.text = str("%02d" % player.num_bullets)
 	total_bullets.text = str("%02d" % player.total_bullets)
+	health_bar.value = player.life
 	
 	for bau in baus:
 		if bau.is_open:
@@ -34,13 +41,3 @@ func _process(delta: float) -> void:
 			bullet.visible = false
 			num_bullets_plus.visible = false
 			plus.visible = false
-	
-func mostrar_num_balas(num_bullets_plus_bau):
-	bullet.visible = true
-	num_bullets_plus.visible = true
-	plus.visible = true
-	num_bullets_plus.text = str("%02d" % num_bullets_plus_bau)
-	await get_tree().create_timer(.10).timeout
-	bullet.visible = false
-	num_bullets_plus.visible = false
-	plus.visible = false

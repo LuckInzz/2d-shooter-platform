@@ -360,7 +360,6 @@ size = Vector2(21, 32)
 position = Vector2(23, 221)
 collision_mask = 22
 script = ExtResource("1_eutx1")
-life = 3
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

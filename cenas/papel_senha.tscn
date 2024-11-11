@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bctqnnldliief" path="res://assets/simpletix.otf" id="2_ol4by"]
 
 [node name="password_paper" type="CanvasLayer"]
+process_mode = 3
 visible = false
 script = ExtResource("1_76phf")
 

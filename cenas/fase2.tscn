@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://doltnfc3tdf6h"]
+[gd_scene load_steps=55 format=3 uid="uid://doltnfc3tdf6h"]
 
 [ext_resource type="Texture2D" uid="uid://cry42dcfbcpjx" path="res://assets/Assets/Assets_City.png" id="1_ha0ts"]
 [ext_resource type="Texture2D" uid="uid://b82rmt6nw0nms" path="res://assets/Assets/TileMaps/Sidescroller Shooter - Central City/Sidescroller Shooter - Central City/Assets/Buildings.png" id="2_gld6u"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ju6jiq54yt1j" path="res://cenas/bau.tscn" id="13_kpe20"]
 [ext_resource type="PackedScene" uid="uid://dalbb64lx5vvl" path="res://cenas/falling_platform.tscn" id="14_jgpa8"]
 [ext_resource type="Script" path="res://scripts/damage_area.gd" id="16_xwbo1"]
+[ext_resource type="PackedScene" uid="uid://ws64111oppyv" path="res://cenas/pause_menu.tscn" id="20_abd0t"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_m5nus"]
 tile_data = PackedInt32Array(0, 393216, 5, 65536, 393216, 6, 131072, 393216, 6, 196608, 393216, 6, 262144, 393216, 5, 327680, 393216, 6, 393216, 393216, 6, 458752, 393216, 6, 524288, 393216, 6, 589824, 393216, 7, 1, 458752, 5, 65537, 458752, 6, 131073, 458752, 6, 196609, 458752, 6, 262145, 458752, 5, 327681, 0, 7, 393217, 458752, 6, 458753, 458752, 6, 524289, 458752, 6, 589825, 458752, 7, 2, 458752, 5, 65538, 131072, 5, 131074, 131072, 6, 196610, 458752, 6, 262146, 458752, 5, 327682, 65536, 7, 393218, 65536, 8, 458754, 131072, 6, 524290, 458752, 6, 589826, 458752, 7, 3, 458752, 5, 65539, 196608, 5, 131075, 196608, 6, 196611, 458752, 6, 262147, 458752, 5, 327683, 65536, 7, 393219, 65536, 10, 458755, 196608, 6, 524291, 458752, 6, 589827, 458752, 7, 4, 458752, 5, 65540, 262144, 5, 131076, 262144, 6, 196612, 458752, 6, 262148, 458752, 5, 327684, 131072, 7, 393220, 131072, 8, 458756, 262144, 6, 524292, 458752, 6, 589828, 458752, 7, 5, 458752, 5, 65541, 458752, 6, 131077, 458752, 6, 196613, 458752, 6, 262149, 458752, 5, 327685, 196608, 7, 393221, 458752, 6, 458757, 458752, 6, 524293, 458752, 6, 589829, 458752, 7, 6, 524288, 5, 65542, 524288, 6, 131078, 524288, 6, 196614, 524288, 6, 262150, 524288, 5, 327686, 524288, 6, 393222, 524288, 6, 458758, 524288, 6, 524294, 524288, 6, 589830, 524288, 7)
@@ -1706,6 +1707,8 @@ script = ExtResource("16_xwbo1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_areas/damage_area2"]
 position = Vector2(285.5, 20.5)
 shape = SubResource("RectangleShape2D_efdb7")
+
+[node name="pause_menu" parent="." instance=ExtResource("20_abd0t")]
 
 [connection signal="body_entered" from="damage_areas/damage_area" to="damage_areas/damage_area" method="_on_body_entered"]
 [connection signal="body_entered" from="damage_areas/damage_area2" to="damage_areas/damage_area2" method="_on_body_entered"]

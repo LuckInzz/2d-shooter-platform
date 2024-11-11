@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://djxn516e10tga"]
+[gd_scene load_steps=9 format=3 uid="uid://djxn516e10tga"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_hg51a"]
 [ext_resource type="Texture2D" uid="uid://dnm12v5pxkxjn" path="res://assets/Gun.png" id="2_7iott"]
 [ext_resource type="FontFile" uid="uid://bctqnnldliief" path="res://assets/simpletix.otf" id="3_jrela"]
 [ext_resource type="Texture2D" uid="uid://dpyyt8me8ibef" path="res://assets/Bullet (32 x 48).png" id="4_s7u1w"]
+[ext_resource type="Texture2D" uid="uid://dj3lpu4j3w0u7" path="res://assets/Assets/icons/health.png" id="5_51opb"]
+[ext_resource type="Texture2D" uid="uid://bfsrho44sriv6" path="res://assets/Assets/icons/xp.png" id="5_eosn6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbcnf"]
+bg_color = Color(0.340727, 0.769396, 0.931423, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqbik"]
+bg_color = Color(0.180141, 0.721221, 0, 1)
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -84,3 +92,42 @@ offset_bottom = 989.0
 theme_override_fonts/font = ExtResource("3_jrela")
 theme_override_font_sizes/font_size = 35
 text = "+"
+
+[node name="xp_icon" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1690.0
+offset_top = 10.0
+offset_right = 1745.0
+offset_bottom = 50.0
+texture = ExtResource("5_eosn6")
+expand_mode = 1
+
+[node name="xp_bar" type="ProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = 1750.0
+offset_top = 15.0
+offset_right = 1900.0
+offset_bottom = 31.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_rbcnf")
+value = 50.0
+show_percentage = false
+
+[node name="health_icon" type="TextureRect" parent="Control"]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 62.4407
+offset_bottom = 48.0
+texture = ExtResource("5_51opb")
+expand_mode = 3
+
+[node name="health_bar" type="ProgressBar" parent="Control"]
+layout_mode = 2
+offset_left = 70.0
+offset_top = 15.0
+offset_right = 220.0
+offset_bottom = 31.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_uqbik")
+max_value = 0.0
+step = 1.0
+show_percentage = false

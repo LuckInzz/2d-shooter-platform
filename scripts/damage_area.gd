@@ -13,8 +13,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") or body.is_in_group("enemies"):
 		player.take_damage(1, Vector2.ZERO)
 		player.is_hurt = true
 		await get_tree().create_timer(.2).timeout
-		player.die()
+		body.die()
+		

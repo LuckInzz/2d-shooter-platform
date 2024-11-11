@@ -1,43 +1,56 @@
 extends CharacterBody2D
 
-const SPEED = 3000.0
-const CHASE_RANGE = 4.0
+const SPEED = 100
+const JUMP_FORCE = -300
+const CHASE_RANGE = 200
 const BULLET = preload("res://cenas/bullet.tscn")
 const PLAYER = preload("res://cenas/player.tscn")
-
-var life = 5
+var life = 100
 var direction = 1
 var is_running = false
 var is_colliding = false  
 var is_hurt = false
 var is_attacking = false
 var is_dead = false
+var instancia_player
+var distance_to_player
 
+@onready var player: CharacterBody2D = $"../../Player"
 @onready var animation := $Sprite as AnimatedSprite2D
 @onready var detector_right: RayCast2D = $detector_right
 @onready var detector_left: RayCast2D = $detector_left
 @onready var target: CharacterBody2D = $"../../Player"
 
+func _ready() -> void:
+	instancia_player = PLAYER.instantiate()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	if detector_right.is_colliding():
-		direction *= -1
-	elif detector_left.is_colliding():
-		direction *= -1
 
-	# Handle movement and animations.
-	if !is_hurt and !is_attacking and !is_dead:
-		velocity.x = direction * SPEED * delta
-		animation.scale.x = direction
-		if velocity.x != 0:
-			is_running = true
-	elif is_colliding:
+	# Calcula a distância para o jogador
+	distance_to_player = global_position.distance_to(target.global_position)
+
+	if detector_right.is_colliding() or detector_left.is_colliding():
+		if is_on_floor():
+			velocity.y = JUMP_FORCE  # Inicia o pulo para evitar o obstáculo
+
+	# Muda para perseguição se o jogador estiver no alcance
+	if distance_to_player <= CHASE_RANGE:
+		if target.global_position.x < global_position.x:
+			direction = -1
+		else:
+			direction = 1
+		is_running = true
+	else:
 		is_running = false
-		velocity.x = 0
+		velocity.x = 0  # Para o movimento quando fora do alcance de perseguição
+
+	# Aplica a velocidade e direção do inimigo
+	if is_running and not is_hurt and not is_attacking and not is_dead:
+		velocity.x = direction * SPEED
+		animation.scale.x = direction  # Atualiza a direção da animação
 
 	move_and_slide()
 	animations()
@@ -47,7 +60,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullets") && !is_hurt:
 		is_colliding = true
 		is_hurt = true
-		life = life - 1
+		life = life - player.bullet_damage
 		velocity.x = 0
 		print("Tiro atingiu o zumbi")
 		if life <= 0:

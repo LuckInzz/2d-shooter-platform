@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bco43q0chekut"]
+[gd_scene load_steps=43 format=3 uid="uid://bco43q0chekut"]
 
 [ext_resource type="PackedScene" uid="uid://ciijnxbjrtmvc" path="res://cenas/parallax_background.tscn" id="1_l62fb"]
 [ext_resource type="Texture2D" uid="uid://cry42dcfbcpjx" path="res://assets/Assets/Assets_City.png" id="2_c3o5t"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dgep4xwr5dn6j" path="res://cenas/enemy.tscn" id="7_og4qw"]
 [ext_resource type="PackedScene" uid="uid://vwsvlsefftjd" path="res://cenas/box.tscn" id="9_em8ot"]
 [ext_resource type="PackedScene" uid="uid://b0wqx86odnudr" path="res://cenas/interfone.tscn" id="14_ni7nd"]
+[ext_resource type="PackedScene" uid="uid://ws64111oppyv" path="res://cenas/pause_menu.tscn" id="15_hrpmq"]
 [ext_resource type="PackedScene" uid="uid://dkqdwnluyqrxq" path="res://cenas/password_menu.tscn" id="15_meauh"]
 [ext_resource type="PackedScene" uid="uid://cgaimvn2l32ms" path="res://cenas/papel_senha.tscn" id="16_5rbcd"]
 
@@ -1176,3 +1177,5 @@ position = Vector2(5, 277)
 [node name="password_menu" parent="." instance=ExtResource("15_meauh")]
 
 [node name="password_paper" parent="." instance=ExtResource("16_5rbcd")]
+
+[node name="pause_menu" parent="." instance=ExtResource("15_hrpmq")]

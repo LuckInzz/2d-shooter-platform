@@ -3,7 +3,9 @@ extends CharacterBody2D
 const BULLET = preload("res://cenas/bullet.tscn")
 const PASSWORD_PAPER = preload("res://cenas/papel_senha.tscn")
 
-@export var life = 5
+var life = 100 
+var enemy_damage = 20
+var bullet_damage = 35
 @export var SPEED = 150.0
 @export var num_bullets = 20
 var initial_bullets = 20
@@ -18,6 +20,7 @@ var is_hurt = false
 var is_reloading = false
 var knockback_vector := Vector2.ZERO
 var has_password_paper = false
+var can_push_box = false
 var instancia_pp
 
 @onready var animation: AnimatedSprite2D = $Sprite
@@ -28,7 +31,6 @@ var instancia_pp
 @onready var carregando_pente: AudioStreamPlayer = $carregando_pente
 @onready var tirando_pente: AudioStreamPlayer = $tirando_pente
 @onready var automatic_shot: AudioStreamPlayer = $automatic_shot
-
 
 var original_bullet_y = -24
 
@@ -51,7 +53,7 @@ func _physics_process(delta):
 		if sign(bullet_position.position.x) == -1:
 			bullet_position.position.x *= -1
 			
-	if Input.is_key_pressed(KEY_I):
+	if Input.is_key_pressed(KEY_I) and can_push_box:
 		is_pushing = true
 	else:
 		is_pushing = false
@@ -99,18 +101,19 @@ func _physics_process(delta):
 	animations()
 	
 func apply_push_box():
-	for i in range(get_slide_collision_count()):
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		if collider is Pushables:
-			if  Input.is_key_pressed(KEY_I):
-				is_pushing = true
-				if velocity.x == 0:
-					collider.push_box(-collision.get_normal())
+	if can_push_box:
+		for i in range(get_slide_collision_count()):
+			var collision = get_slide_collision(i)
+			var collider = collision.get_collider()
+			if collider is Pushables:
+				if  Input.is_key_pressed(KEY_I):
+					is_pushing = true
+					if velocity.x == 0:
+						collider.push_box(-collision.get_normal())
+					else:
+						collider.push_box(-collision.get_normal())
 				else:
-					collider.push_box(-collision.get_normal())
-			else:
-				is_pushing = false
+					is_pushing = false
 
 func shoot_bullet():
 	if num_bullets > 0:
@@ -170,7 +173,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		body.is_attacking = false
 		
 		var knockback = Vector2((global_position.x - body.global_position.x) * 15, 0)
-		take_damage(1, knockback)
+		take_damage(enemy_damage, knockback)
 		
 		is_hurt = true
 		print("Zumbi atingiu o player")
