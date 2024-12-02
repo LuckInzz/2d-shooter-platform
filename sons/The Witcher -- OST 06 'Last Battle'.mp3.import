@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m52f5wpbijlm"
+path="res://.godot/imported/The Witcher -- OST 06 'Last Battle'.mp3-e926b978c609b09dd53a586b9aaade91.mp3str"
+
+[deps]
+
+source_file="res://sons/The Witcher -- OST 06 'Last Battle'.mp3"
+dest_files=["res://.godot/imported/The Witcher -- OST 06 'Last Battle'.mp3-e926b978c609b09dd53a586b9aaade91.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

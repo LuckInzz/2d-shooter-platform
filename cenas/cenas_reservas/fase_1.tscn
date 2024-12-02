@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl5mv8gx6femw"]
+
+[ext_resource type="PackedScene" uid="uid://fj65uekaqnes" path="res://cenas/cenas_reservas/fase_2.tscn" id="1_fdjcg"]
+
+[node name="World" instance=ExtResource("1_fdjcg")]

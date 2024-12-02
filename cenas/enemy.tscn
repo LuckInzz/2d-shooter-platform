@@ -231,7 +231,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -280,9 +280,8 @@ shape = SubResource("CapsuleShape2D_v4tty")
 texture_filter = 1
 position = Vector2(3, -13)
 sprite_frames = SubResource("SpriteFrames_e3llt")
-animation = &"Hurt"
-frame = 2
-frame_progress = 1.0
+animation = &"Idle"
+frame_progress = 0.185847
 
 [node name="detector_right" type="RayCast2D" parent="."]
 position = Vector2(0, -5)
@@ -305,6 +304,8 @@ collision_mask = 9
 position = Vector2(1.91667, -15.25)
 shape = SubResource("RectangleShape2D_22n37")
 debug_color = Color(0.994658, 0, 0.218502, 0.42)
+
+[node name="audio_player" type="AudioStreamPlayer" parent="."]
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

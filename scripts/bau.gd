@@ -7,11 +7,13 @@ const PLAYER = preload("res://cenas/player.tscn")
 @onready var player: CharacterBody2D = $"../../Player"
 @onready var bau: Node2D = $"."
 @onready var hud: CanvasLayer = $"../../HUD"
+@onready var open_small_chest_sound: AudioStreamPlayer = $open_small_chest_sound
 
 var can_open = false
 var is_open = false
 var already_open = false
 var num_bullets_plus = 0
+var num_medkits_plus = 0
 
 func _ready() -> void:
 	animation.play("fechado")
@@ -37,11 +39,15 @@ func _process(delta: float) -> void:
 # Função para abrir o baú
 func abrir_bau():
 	is_open = true
+	open_small_chest_sound.play()
 	animation.play("abrindo")
 	if !already_open:
-		num_bullets_plus = randf_range(5, 12)
-		#hud.mostrar_num_balas(num_bullets_plus)
-		player.total_bullets += num_bullets_plus
-	if bau.name == "bau_senha":
-		player.has_password_paper = true
-	#is_open = false
+		num_bullets_plus = randi_range(3, 10)
+		var rnd_number = randi_range(1, 3)
+		if rnd_number == 1:		#33% chance de conseguir medkit
+			num_medkits_plus = 1
+			Global.num_medkits += num_medkits_plus
+		Global.total_bullets += num_bullets_plus
+		hud.atualiza_HUD_baus(num_bullets_plus, num_medkits_plus)
+		already_open = true
+	is_open = false

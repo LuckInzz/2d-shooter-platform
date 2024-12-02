@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://br3nnir0g22yr"
+path="res://.godot/imported/Footsteps Grass Sound Effect (HD).mp3-6e2cdd3be9b14c9cb0dabdfa2b3f1384.mp3str"
+
+[deps]
+
+source_file="res://sons/Footsteps Grass Sound Effect (HD).mp3"
+dest_files=["res://.godot/imported/Footsteps Grass Sound Effect (HD).mp3-6e2cdd3be9b14c9cb0dabdfa2b3f1384.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

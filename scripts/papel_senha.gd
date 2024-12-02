@@ -12,7 +12,6 @@ func _process(delta: float) -> void:
 func show_in_screen():
 	visible = true
 	get_tree().paused = true
-	print ("teste tela senha")
 
 func _on_exit_button_pressed() -> void:
 	visible = false

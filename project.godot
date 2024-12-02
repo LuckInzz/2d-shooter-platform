@@ -14,10 +14,15 @@ config/name="2D Shooter Platform"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://scripts/global_singleton.gd"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 
 [dotnet]
 
@@ -28,6 +33,9 @@ project/assembly_name="2D Shooter Platform"
 enemies=""
 player=""
 baus=""
+boss=""
+bullet_boss=""
+bullets=""
 
 [input]
 
@@ -61,6 +69,7 @@ automatic_shooting={
 2d_physics/layer_4="bullet"
 2d_physics/layer_5="hitbox"
 2d_physics/layer_6="hurtbox"
+2d_physics/layer_7="bullet_boss"
 
 [rendering]
 

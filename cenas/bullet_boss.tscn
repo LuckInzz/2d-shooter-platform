@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1jslxymb50ls"]
+
+[ext_resource type="Script" path="res://scripts/bullet_boss.gd" id="1_hdcsu"]
+[ext_resource type="Texture2D" uid="uid://c2nwlfdfvgdkw" path="res://assets/Bullet_boss.png" id="2_rhbor"]
+[ext_resource type="Texture2D" uid="uid://c1jn553lvfqw2" path="res://assets/Bullet_boss_2.png" id="3_novj0"]
+[ext_resource type="Texture2D" uid="uid://dtr1ndjmcjklr" path="res://assets/Bullet_boss_3.png" id="4_cst31"]
+[ext_resource type="Texture2D" uid="uid://b6nbapol8ew5u" path="res://assets/Bullet_boss_4.png" id="5_kanaa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_774yg"]
+atlas = ExtResource("3_novj0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrh6f"]
+atlas = ExtResource("4_cst31")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lag0b"]
+atlas = ExtResource("5_kanaa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7svl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rhbor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_774yg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrh6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lag0b")
+}],
+"loop": true,
+"name": &"bone",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7krfu"]
+size = Vector2(6, 8)
+
+[node name="bullet_boss" type="CharacterBody2D" groups=["bullet_boss"]]
+collision_layer = 64
+collision_mask = 35
+script = ExtResource("1_hdcsu")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3125, 0.28125)
+sprite_frames = SubResource("SpriteFrames_m7svl")
+animation = &"bone"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7krfu")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

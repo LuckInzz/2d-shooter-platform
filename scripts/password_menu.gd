@@ -5,7 +5,7 @@ extends CanvasLayer
 @onready var button_sound: AudioStreamPlayer = $button_sound
 @onready var correct_password: AudioStreamPlayer = $correct_password
 @onready var wrong_password: AudioStreamPlayer = $wrong_password
-
+@onready var hud: CanvasLayer = $HUD
 
 var password = "8213"
 var player_password = "0000"

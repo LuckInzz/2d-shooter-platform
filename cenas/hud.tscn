@@ -1,19 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://djxn516e10tga"]
+[gd_scene load_steps=14 format=3 uid="uid://djxn516e10tga"]
 
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hg51a"]
+[ext_resource type="Script" path="res://scripts/hud_2.gd" id="1_7hmkx"]
 [ext_resource type="Texture2D" uid="uid://dnm12v5pxkxjn" path="res://assets/Gun.png" id="2_7iott"]
 [ext_resource type="FontFile" uid="uid://bctqnnldliief" path="res://assets/simpletix.otf" id="3_jrela"]
 [ext_resource type="Texture2D" uid="uid://dpyyt8me8ibef" path="res://assets/Bullet (32 x 48).png" id="4_s7u1w"]
 [ext_resource type="Texture2D" uid="uid://dj3lpu4j3w0u7" path="res://assets/Assets/icons/health.png" id="5_51opb"]
 [ext_resource type="Texture2D" uid="uid://bfsrho44sriv6" path="res://assets/Assets/icons/xp.png" id="5_eosn6"]
+[ext_resource type="Texture2D" uid="uid://bg6re6v883vix" path="res://assets/medkit-1.png" id="7_lwwn1"]
+[ext_resource type="Shader" path="res://shaders/transition.gdshader" id="8_5n1jc"]
+[ext_resource type="Script" path="res://scripts/fundo_preto.gd" id="9_eska3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbcnf"]
 bg_color = Color(0.340727, 0.769396, 0.931423, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flm1w"]
+bg_color = Color(0.6, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqbik"]
-bg_color = Color(0.180141, 0.721221, 0, 1)
+bg_color = Color(0, 0.996078, 0.266667, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_anx7d"]
+shader = ExtResource("8_5n1jc")
+shader_parameter/lines = 10.0
+shader_parameter/threshold = 0.0
+shader_parameter/line_color_a = Color(0, 0, 0, 1)
+shader_parameter/line_color_b = Color(0, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_7hmkx")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -22,7 +36,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hg51a")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -94,6 +107,7 @@ theme_override_font_sizes/font_size = 35
 text = "+"
 
 [node name="xp_icon" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 1690.0
 offset_top = 10.0
@@ -103,6 +117,7 @@ texture = ExtResource("5_eosn6")
 expand_mode = 1
 
 [node name="xp_bar" type="ProgressBar" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 1750.0
 offset_top = 15.0
@@ -127,7 +142,91 @@ offset_left = 70.0
 offset_top = 15.0
 offset_right = 220.0
 offset_bottom = 31.0
+theme_override_styles/background = SubResource("StyleBoxFlat_flm1w")
 theme_override_styles/fill = SubResource("StyleBoxFlat_uqbik")
 max_value = 0.0
 step = 1.0
 show_percentage = false
+
+[node name="medkit_icon" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 1679.0
+offset_top = 1000.0
+offset_right = 1771.0
+offset_bottom = 1092.0
+texture = ExtResource("7_lwwn1")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="num_medkits" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -57.0
+offset_right = -66.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="medkit_icon_plus" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1829.0
+offset_top = 898.0
+offset_right = 1875.0
+offset_bottom = 946.0
+texture = ExtResource("7_lwwn1")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="num_medkits_plus" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1778.0
+offset_top = 903.0
+offset_right = 1815.0
+offset_bottom = 938.0
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 35
+text = "0"
+
+[node name="plus_medkit" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1743.0
+offset_top = 898.0
+offset_right = 1759.0
+offset_bottom = 933.0
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 35
+text = "+"
+
+[node name="mensagens" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 2.0
+offset_right = 34.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_jrela")
+theme_override_font_sizes/font_size = 29
+
+[node name="fundo_preto" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_anx7d")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("9_eska3")

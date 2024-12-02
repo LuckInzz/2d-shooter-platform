@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://co012p53ljgd7"
+path="res://.godot/imported/Forest sound effect.mp3-653a80e134cf8ed3216ec605dc9094ff.mp3str"
+
+[deps]
+
+source_file="res://sons/Forest sound effect.mp3"
+dest_files=["res://.godot/imported/Forest sound effect.mp3-653a80e134cf8ed3216ec605dc9094ff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

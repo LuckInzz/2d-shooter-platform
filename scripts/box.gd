@@ -19,6 +19,10 @@ func push_box(direction):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.can_push_box = true
+	elif body.is_in_group("bullets"):
+		body.queue_free()
+	elif body.is_in_group("bullets_boss"):
+		body.queue_free()
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:

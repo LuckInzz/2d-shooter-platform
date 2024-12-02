@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var player: CharacterBody2D = $"../../Player"
+#@onready var enemy: CharacterBody2D = $"."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,9 +14,13 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") or body.is_in_group("enemies"):
+	if body.is_in_group("player"):
 		player.take_damage(1, Vector2.ZERO)
 		player.is_hurt = true
 		await get_tree().create_timer(.2).timeout
-		body.die()
+		player.die()
+	if body.is_in_group("enemies"):
+		body.queue_free()
+	elif body.is_in_group("boss"):
+		body.queue_free()
 		
